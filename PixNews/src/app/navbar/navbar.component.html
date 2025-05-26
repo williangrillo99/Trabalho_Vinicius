@@ -1,0 +1,29 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <h1>💳 App Pix</h1>
+    </div>
+    
+    <div class="navbar-menu">
+      <button 
+        class="nav-button"
+        (click)="navigateTo('pix')"
+        routerLinkActive="active">
+        💰 Pix
+      </button>
+      
+      <button 
+        class="nav-button"
+        (click)="navigateTo('noticias')"
+        routerLinkActive="active">
+        📰 Notícias
+      </button>
+    </div>
+
+    <div class="navbar-user">
+      <button class="logout-button" (click)="logout()">
+        🚪 Sair
+      </button>
+    </div>
+  </div>
+</nav>

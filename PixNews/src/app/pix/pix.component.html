@@ -1,0 +1,141 @@
+<div class="pix-container">
+  <div class="pix-card">
+    <div class="card-header">
+      <h2>💰 Gerar PIX</h2>
+      <p>Digite o valor em reais (apenas números inteiros)</p>
+    </div>
+
+    <form [formGroup]="pixForm" class="pix-form">
+      <div class="form-group">
+        <label for="valor">Valor (R$):</label>
+        <div class="input-group">
+          <span class="input-prefix">R$</span>
+          <input 
+            type="number" 
+            id="valor"
+            formControlName="valor"
+            class="form-control"
+            [class.error]="valor?.invalid && valor?.touched"
+            [class.success]="valor?.valid && valor?.value > 0"
+            placeholder="Digite apenas números inteiros"
+            min="1"
+            step="1"
+         
+            (keypress)="onKeyPress($event)">
+        </div>
+        
+        <div *ngIf="valor?.invalid && valor?.touched" class="error-message">
+          <span *ngIf="valor?.errors?.['required']">⚠️ Valor é obrigatório</span>
+          <span *ngIf="valor?.errors?.['min']">⚠️ Valor deve ser maior que R$ 0</span>
+          <span *ngIf="valor?.errors?.['notInteger']">⚠️ Digite apenas números inteiros</span>
+        </div>
+        
+        <div *ngIf="valor?.valid && valor?.value > 0" class="success-message">
+          ✅ Valor válido: R$ {{ valor?.value | number:'1.0-0' }}
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button 
+          type="button" 
+          class="btn-generate"
+          [disabled]="!isFormValid || isGenerating"
+          (click)="generatePix()">
+          <span *ngIf="isGenerating" class="loading-spinner"></span>
+          <span *ngIf="!isGenerating">🔄</span>
+          {{ isGenerating ? 'Gerando PIX...' : 'Gerar PIX' }}
+        </button>
+        
+        <button 
+          type="button" 
+          class="btn-clear"
+          (click)="clearValue()"
+          [disabled]="isGenerating">
+          🗑️ Limpar
+        </button>
+      </div>
+    </form>
+
+    <!-- Loading State -->
+    <div *ngIf="isGenerating" class="generating-state">
+      <div class="generating-animation">
+        <div class="pulse-circle"></div>
+        <div class="pulse-circle pulse-delay-1"></div>
+        <div class="pulse-circle pulse-delay-2"></div>
+      </div>
+      <h3>Gerando seu PIX...</h3>
+      <p>Aguarde enquanto criamos o código de pagamento</p>
+    </div>
+
+    <!-- QR Code Section -->
+    <div *ngIf="showQRCode && !isGenerating && pixResponse" class="qr-section">
+      <div class="qr-header">
+        <h3>✅ PIX Gerado com Sucesso!</h3>
+        <p class="qr-value">Valor: R$ {{ valor?.value | number:'1.0-0' }}</p>
+      </div>
+      
+      <div class="qr-container">
+        <div class="qr-code-wrapper">
+          <img 
+            [src]="qrCodeImageSrc" 
+            alt="QR Code PIX"
+            class="qr-code-image"
+            >
+        </div>
+      </div>
+      
+      <div class="qr-actions">
+        <button class="btn-copy" (click)="copyPixPayload()">
+          📋 Copiar Código PIX
+        </button>
+     
+        <button class="btn-new-pix" (click)="clearValue()">
+          ➕ Gerar Novo PIX
+        </button>
+      </div>
+      
+      <div class="qr-instructions">
+        <h4>Como usar:</h4>
+        <ol>
+          <li>📱 Abra o app do seu banco</li>
+          <li>📷 Escaneie o QR Code acima</li>
+          <li>✅ Confirme o pagamento</li>
+          <li>⚡ Transferência instantânea!</li>
+        </ol>
+      </div>
+
+      <!-- Informações do PIX -->
+      <div class="pix-details">
+        <div class="detail-card">
+          <h4>📄 Informações do PIX</h4>
+          <div class="detail-item">
+            <strong>Beneficiário:</strong> Willian Wagner Rocha Gril
+          </div>
+          <div class="detail-item">
+            <strong>Cidade:</strong> Cariacica
+          </div>
+          <div class="detail-item">
+            <strong>Valor:</strong> R$ {{ valor?.value | number:'1.2-2' }}
+          </div>
+          <div class="detail-item">
+          </div>
+        </div>
+
+        <!-- Código PIX para Copia e Cola -->
+        <div class="detail-card">
+          <h4>📝 Código PIX (Copia e Cola)</h4>
+          <div class="pix-payload-container">
+            <textarea 
+              readonly 
+              class="pix-payload"
+              [value]="pixPayload"
+              rows="4">
+            </textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+  </div>
+</div>

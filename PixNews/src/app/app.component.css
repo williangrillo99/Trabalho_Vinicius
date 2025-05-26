@@ -1,0 +1,46 @@
+.app-container {
+    min-height: 100vh;
+    background: #f5f7fa;
+}
+  
+  .main-content {
+    min-height: calc(100vh - 60px);
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+  }
+  
+  .card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }

@@ -1,0 +1,61 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h2>🔐 Login</h2>
+      <p>Entre com suas credenciais</p>
+    </div>
+    
+   <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div> 
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group">
+        <label for="cpfCnpj">CPF ou CNPJ:</label>
+        <input 
+          type="text" 
+          id="cpfCnpj"
+          formControlName="cpfCnpj"
+          class="form-control"
+          [class.error]="loginForm.controls['cpfCnpj'].invalid && loginForm.controls['cpfCnpj'].touched"
+          placeholder="Digite seu usuário ou CPF">
+        <div *ngIf="loginForm.controls['cpfCnpj'].invalid && loginForm.controls['cpfCnpj'].touched" class="error-message">
+          Campo  obrigatório
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha:</label>
+        <input 
+          type="password" 
+          id="senha"
+          formControlName="senha"
+          class="form-control"
+          [class.error]="loginForm.controls['senha'].invalid && loginForm.controls['senha'].touched"
+          placeholder="Digite sua senha">
+        <div *ngIf="loginForm.controls['senha'].invalid && loginForm.controls['senha'].touched" class="error-message">
+          Senha é obrigatória
+        </div>
+      </div>
+
+      <div *ngIf="loginError" class="error-message">
+        {{ loginError }}
+      </div> 
+
+      <button 
+        type="submit" 
+        class="btn-login"
+        [disabled]="loginForm.invalid">
+        Entrar
+      </button>
+    </form>
+
+    <div class="register-link">
+      <p>Não tem uma conta?</p>
+      <button type="button" class="btn-register-link" (click)="navigateToRegister()">
+        Cadastre-se aqui
+      </button>
+    </div>
+
+  </div>
+</div>

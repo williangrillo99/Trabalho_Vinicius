@@ -1,0 +1,89 @@
+.navbar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 60px;
+  }
+  
+  .navbar-brand h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  .navbar-menu {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .nav-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+  }
+  
+  .nav-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .nav-button.active {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  .navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .user-greeting {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  
+  .logout-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+  }
+  
+  .logout-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-container {
+      flex-direction: column;
+      height: auto;
+      padding: 10px 20px;
+    }
+    
+    .navbar-menu {
+      margin: 10px 0;
+    }
+    
+    .user-greeting {
+      display: none;
+    }
+  }

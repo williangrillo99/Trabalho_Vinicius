@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "Ci1UHpFikouHh+obFm+ZM3g/lwURaKzQx1PRxOLU40g=",
+  "Source": "ExpApp",
+  "BasePath": "_content/ExpApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

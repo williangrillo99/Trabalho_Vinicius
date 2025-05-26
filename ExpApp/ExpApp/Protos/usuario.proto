@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+service Usuario {
+  rpc Adicionar (CriarUsuarioRequest) returns (UsuarioResponse);
+  rpc Login (LoginRequest) returns (UsuarioResponse);
+}
+
+message CriarUsuarioRequest {
+  string nome = 1;
+  string cpfCnpj = 2;
+  string senha = 3;
+  string idClientAssas = 4;
+}
+
+message UsuarioResponse {
+  int32 id = 1;
+  string cpfCnpj = 2;
+  string nome = 3;
+  string idClientAssas = 4;
+}
+
+message LoginRequest {
+  string cpfCnpj = 1;
+  string senha = 2;
+}
